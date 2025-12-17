@@ -2,8 +2,9 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { jsPDF } from 'jspdf';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Worker 설정 (public 폴더에 있는 파일 참조)
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+// Worker 설정: CDN을 사용하여 경로 문제 해결
+// pdfjsLib.version을 사용하여 현재 설치된 버전과 일치하는 워커를 로드합니다.
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
 // 사용자가 요청한 모델명 적용
 const MODEL_NAME = 'gemini-3-pro-preview';
